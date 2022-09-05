@@ -1,0 +1,43 @@
+WindowManager:
+    FirstWindow:
+    SecondWindow:
+
+<FirstWindow>
+    name: 'first'
+
+    BoxLayout:
+        orientation: 'vertical'
+        size: root.width, root.height
+
+        Label:
+            text: 'first'
+
+        Button:
+            text: 'next'
+            on_release:
+                app.root.current = 'second'
+                root.manager.transition.direction = 'left'
+
+    MDBottomAppBar:
+            MDToolbar:
+                icon: "git"
+                type: "bottom"
+                left_action_items: [["home", lambda x: x ]]
+                right_action_items:[["menu"]]
+
+
+<SecondWindow>
+    name: 'second'
+
+    BoxLayout:
+        orientation: 'vertical'
+        size: root.width, root.height
+
+        Label:
+            text: 'second'
+
+        Button:
+            text: 'next'
+            on_release:
+                app.root.current = 'first'
+                root.manager.transition.direction = 'right'

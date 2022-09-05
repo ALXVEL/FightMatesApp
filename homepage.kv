@@ -1,0 +1,100 @@
+ScreenManager:
+    MainLayout:
+    SecondScreen:
+
+<ListItemWithCheckbox>:
+    MDCheckbox:
+        on_active: root.on_checkbox_active(*args)
+        size_hint: None, None
+        size: "48dp", "48dp"
+        pos_hint: {'center_x': .9, 'center_y': .5}
+        listItem: root
+
+<MainLayout>
+    name: 'main'
+    GridLayout:
+        cols:1
+        size: root.width, root.height
+
+        MDToolbar:
+            id: toolbar
+            title: '[color=#020650]FightMates[/color]'
+            md_bg_color: 1,1,1,1
+
+        BoxLayout:
+            orientation: 'vertical'
+
+            BoxLayout:
+                orientation: 'vertical'
+                size_hint: 1,0.2
+
+                MDLabel:
+                    id: date
+                    color: 0,1,0,1
+                    text: root.date
+                    halign: 'left'
+                    size_hint: 1,0.3
+                    md_bg_color: 0,0,0,0.82
+
+                MDLabel:
+                    id: upcoming
+                    text: root.upcoming
+                    color: 0,1,0,1
+                    size_hint: 1,0.7
+                    halign: 'center'
+                    md_bg_color: 0,0,0,0.82
+
+                #Button:
+                   # text: 'click'
+                    #on_release: app.root.current = 'predict'
+
+            ScrollView:
+                GridLayout:
+                    id:events1
+                    spacing: 2
+                    size_hint_y: None
+                    height: self.minimum_height
+                    row_default_height: 60
+                    cols:1
+
+        MDBottomAppBar:
+            md_bg_color: 0,0,0,0.82
+            MDToolbar:
+                type: "bottom"
+                right_action_items:[["arrow-right", lambda x: app.change_screen()]]
+                on_action_button: root.prediction_dialog()
+                icon: "git"
+                icon_color: 0,0,0.5,0.3
+
+<SecondScreen>
+    name: 'second'
+    GridLayout:
+        cols:1
+        size: root.width, root.height
+
+        MDToolbar:
+            id: toolbar
+            title: '[color=#020650]Predictions[/color]'
+            md_bg_color: 1,1,1,1
+
+        MDLabel:
+            text: '   My Predictions'
+            size_hint: 1,0.7
+
+        GridLayout:
+            cols:1
+            id: myp
+
+        MDLabel:
+            text: '   Friends Predictions'
+
+        GridLayout:
+            cols:1
+            id:friendsprediction
+
+        MDBottomAppBar:
+            md_bg_color: 0,0,0,0.82
+            MDToolbar:
+                type: "bottom"
+                left_action_items:[["arrow-left", lambda x: app.home_screen()]]
+                icon: "plus"
